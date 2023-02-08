@@ -1,21 +1,66 @@
+import { useEffect, useState } from 'react';
 import './App.css';
 import Button from './components/Button';
-import NumberInput from './components/NumberInput';
-import SelectInput from './components/SelectInput';
-import TextInput from './components/TextInput';
+import Input from './components/Input';
 
 function App() {
 
   const shippingOptions = ["Air", "Ocean"];
 
+  const [quoteData, setQuoteData] = useState({
+    startingCountry: '',
+    destinationCountry: '',
+    quotePrice: 0,
+    shippingChannel: '',
+  });
+
+  const { startingCountry, destinationCountry, quotePrice, shippingChannel } = quoteData;
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setQuoteData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="App">
-      <form>
-        <TextInput text="Starting country" />
-        <TextInput text="Destination country" />
-        <NumberInput text="Quote price" />
-        <SelectInput text="Shipping channel" options={shippingOptions}/>
-        <Button text="Create quote"/>
+      <form onSubmit={handleSubmit}>
+        <Input
+          label="Starting country"
+          name="startingCountry"
+          type="text"
+          value={startingCountry}
+          onChange={handleChange}
+        />
+        <Input
+          label="Destination country"
+          name="destinationCountry"
+          type="text"
+          value={destinationCountry}
+          onChange={handleChange}
+        />
+        <Input
+          label="Quote price"
+          name="quotePrice"
+          type="number"
+          value={quotePrice}
+          onChange={handleChange}
+        />
+        <Input
+          label="Shipping channel"
+          name="shippingChannel"
+          options={shippingOptions}
+          type="select"
+          value={shippingChannel}
+          onChange={handleChange}
+        />
+        <Button text="Create quote" type="submit" />
       </form>
     </div>
   );
