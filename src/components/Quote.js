@@ -1,18 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './Quote.css';
 
 const Quote = ({ data }) => {
   const { startingCountry, destinationCountry, shippingChannel, quotePrice } = data;
+
+  const [estimatedRange, setEstimatedRange] = useState('');
+  const [estimatedDeliveryDate, setEstimatedDeliveryDate] = useState('');
 
   const randomInteger = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
   const addDays = (date, days) => {
-    return date.setDate(date.getDate() + days);
+    return new Date(date.setDate(date.getDate() + days));
   };
 
-  const getEstimatedDelivery = () => {
+  const generateEstimatedDelivery = () => {
     let startDate, endDate, startRange, endRange;
     // Validate how many days to consider in the range
     if (shippingChannel === 'Air') {
@@ -23,13 +26,15 @@ const Quote = ({ data }) => {
       endDate = randomInteger(5, 10);
     }
     // Preformat range response
-    const estimatedRange = `${startDate}-${startDate + endDate} days`;
-    startRange = addDays(new Date(), startDate);
-    endRange = addDays(new Date(), endDate);
-
+    setEstimatedRange(`${startDate}-${startDate + endDate} days`);
+    startRange = addDays(new Date(), startDate).toLocaleString('default', { month: 'short', day: '2-digit' });
+    endRange = addDays(new Date(), startDate + endDate).toLocaleString('default', { month: 'short', day: '2-digit' });
+    setEstimatedDeliveryDate(`${startRange}-${endRange}`);
   };
 
-  useEffect(() => { getEstimatedDelivery() }, []);
+  useEffect(() => {
+    if (shippingChannel) generateEstimatedDelivery();
+  }, [shippingChannel]);
 
   return (
     <div className="row">
@@ -43,6 +48,15 @@ const Quote = ({ data }) => {
           )}
         </div>
         <div className="QuoteDelivery">
+          <div className="QuoteDeliveryDays">
+            <span>{estimatedRange}</span>
+          </div>
+          <div className="QuoteDeliveryEstimation">
+            <span>Estimated delivery</span>
+          </div>
+          <div className="QuoteDeliveryDate">
+            <span>{estimatedDeliveryDate}</span>
+          </div>
         </div>
       </div>
       <div className="column right">
