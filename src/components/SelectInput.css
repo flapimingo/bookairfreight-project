@@ -1,0 +1,15 @@
+.SelectInput {
+  margin-bottom: 10px;
+  display: flex;
+  flex-flow: column;
+}
+
+label {
+  font-family: sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+select {
+  width: 70px;
+}
