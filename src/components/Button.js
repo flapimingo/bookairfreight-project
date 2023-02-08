@@ -1,10 +1,10 @@
 import './Button.css';
 
-const Button = (props) => {
+const Button = ({ label, type }) => {
   return (
     <div className="Button">
-      <button>
-        <span className='text-span'>{props.text}</span>
+      <button type={type}>
+        <span className='text-span'>{label}</span>
       </button>
     </div>
   );

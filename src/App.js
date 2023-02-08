@@ -1,67 +1,29 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import Button from './components/Button';
-import Input from './components/Input';
+import QuoteForm from './components/Form';
 
 function App() {
+  const [quoteHistory, setQuoteHistory] = useState([]);
 
-  const shippingOptions = ["Air", "Ocean"];
-
-  const [quoteData, setQuoteData] = useState({
+  const defaultQuoteValues = {
     startingCountry: '',
     destinationCountry: '',
-    quotePrice: 0,
+    quotePrice: NaN,
     shippingChannel: '',
-  });
-
-  const { startingCountry, destinationCountry, quotePrice, shippingChannel } = quoteData;
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setQuoteData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, quoteData) => {
     e.preventDefault();
+    setQuoteHistory([...quoteHistory, quoteData]);
   };
 
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
-        <Input
-          label="Starting country"
-          name="startingCountry"
-          type="text"
-          value={startingCountry}
-          onChange={handleChange}
-        />
-        <Input
-          label="Destination country"
-          name="destinationCountry"
-          type="text"
-          value={destinationCountry}
-          onChange={handleChange}
-        />
-        <Input
-          label="Quote price"
-          name="quotePrice"
-          type="number"
-          value={quotePrice}
-          onChange={handleChange}
-        />
-        <Input
-          label="Shipping channel"
-          name="shippingChannel"
-          options={shippingOptions}
-          type="select"
-          value={shippingChannel}
-          onChange={handleChange}
-        />
-        <Button text="Create quote" type="submit" />
-      </form>
+      <QuoteForm
+        name="QuoteForm"
+        handleSubmit={handleSubmit}
+        defaultQuoteValues={defaultQuoteValues}
+      />
     </div>
   );
 }
