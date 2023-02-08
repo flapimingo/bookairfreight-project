@@ -2,7 +2,7 @@ import './Input.css';
 
 const Input = ({ label, type, options, value, name, onChange }) => {
   return (
-    <div className="SelectInput">
+    <div className="Input">
       {label && <label>{label}</label>}
       {type === 'select' && options && (
         <select value={value} onChange={onChange} name={name}>
