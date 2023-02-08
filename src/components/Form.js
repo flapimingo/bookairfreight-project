@@ -2,8 +2,7 @@ import { useState } from "react";
 import Button from "./Button";
 import Input from "./Input";
 
-const Form = ({ name, defaultQuoteValues, handleSubmit }) => {
-  const shippingOptions = ["Air", "Ocean"];
+const Form = ({ name, defaultQuoteValues, shippingOptions, handleSubmit }) => {
 
   const [quoteData, setQuoteData] = useState(defaultQuoteValues);
 
@@ -43,6 +42,7 @@ const Form = ({ name, defaultQuoteValues, handleSubmit }) => {
         name="quotePrice"
         type="number"
         value={quotePrice}
+        min={0}
         onChange={handleChange}
       />
       <Input

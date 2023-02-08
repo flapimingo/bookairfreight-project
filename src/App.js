@@ -1,15 +1,20 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import QuoteForm from './components/Form';
+import Quote from './components/Quote';
 
 function App() {
   const [quoteHistory, setQuoteHistory] = useState([]);
+
+  // Defines default values
+  // By default, the first shipping option is selected
+  const shippingOptions = ['Ocean', 'Air'];
 
   const defaultQuoteValues = {
     startingCountry: '',
     destinationCountry: '',
     quotePrice: NaN,
-    shippingChannel: '',
+    shippingChannel: shippingOptions[0],
   };
 
   const handleSubmit = (e, quoteData) => {
@@ -23,7 +28,18 @@ function App() {
         name="QuoteForm"
         handleSubmit={handleSubmit}
         defaultQuoteValues={defaultQuoteValues}
+        shippingOptions={shippingOptions}
       />
+      {quoteHistory.length > 0 && (
+        <div className="QuoteBox">
+          {quoteHistory.map((quote, index) => (
+            <Quote
+              data={quote}
+              key={index}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

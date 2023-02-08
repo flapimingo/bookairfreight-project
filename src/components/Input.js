@@ -1,6 +1,6 @@
 import './Input.css';
 
-const Input = ({ label, type, options, value, name, onChange }) => {
+const Input = ({ label, type, options, value, name, min, onChange }) => {
   return (
     <div className="Input">
       {label && <label>{label}</label>}
@@ -17,6 +17,7 @@ const Input = ({ label, type, options, value, name, onChange }) => {
           name={name}
           value={value}
           onChange={onChange}
+          min={min}
         />
       )}
     </div>
