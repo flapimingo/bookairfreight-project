@@ -17,8 +17,24 @@ const Form = ({ name, defaultQuoteValues, shippingOptions, handleSubmit }) => {
   };
 
   const handleOnSubmit = (e) => {
-    handleSubmit(e, quoteData);
-    setQuoteData(defaultQuoteValues);
+    let formIsValid = true;
+
+    // Validate if values are not empty
+    if ([startingCountry, destinationCountry].includes('') || Number.isNaN(quotePrice)) {
+      alert('Cannot be empty');
+      formIsValid = false;
+    } else if ((startingCountry !== 'undefined') && (destinationCountry !== 'undefined')) {
+      // Validate if country includes only letters
+      if ((!startingCountry.match(/^[a-zA-Z]+$/)) || (!destinationCountry.match(/^[a-zA-Z]+$/))) {
+        alert('Invalid input');
+        formIsValid = false;  
+      }
+    }
+
+    if (formIsValid) {
+      handleSubmit(e, quoteData);
+      setQuoteData(defaultQuoteValues);
+    }
   };
 
   return (

@@ -64,7 +64,7 @@ const Quote = ({ data }) => {
           )}
         </div>
         <div className="QuoteDelivery">
-          <p>
+        <div className="QuoteDeliveryBox">
             <div className="QuoteDeliveryDays">
               <span>{estimatedRange}</span>
             </div>
@@ -74,7 +74,7 @@ const Quote = ({ data }) => {
             <div className="QuoteDeliveryDate">
               <span>{estimatedDeliveryDate}</span>
             </div>
-          </p>
+          </div>
         </div>
       </div>
       <div className="column right">

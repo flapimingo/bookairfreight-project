@@ -43,6 +43,10 @@
   height: 60%;
 }
 
+.QuoteDeliveryBox {
+  margin: 20px;
+}
+
 .QuoteDeliveryDays>span {
   font-family: sans-serif;
   font-weight: 700;
