@@ -1,12 +1,12 @@
 .Quote {
   width: 100vw;
-  content: "";
-  display: table;
-  clear: both;
+  vertical-align: middle;
+  margin-top: auto;
 }
 
 .column {
   float: left;
+  height: 200px;
 }
 
 .left {
@@ -14,15 +14,36 @@
 }
 
 .right {
-  width: 70%;
+  width: 60%;
 }
 
 .QuoteShipping {
   font-size: 14px;
+  border: 1px solid black;
+  height: 40%;
   text-align: left;
 }
 
-.QuoteDeliveryDays > span {
+.QuoteShippingHeader {
+  margin: 10px;
+}
+
+.QuoteShippingTitle {
+  line-height: 20px;
+}
+
+.QuoteShippingIcon {
+  font-size: 50px;
+  margin: 20px;
+  color: #3898ec;
+}
+
+.QuoteDelivery {
+  border: 1px solid black;
+  height: 60%;
+}
+
+.QuoteDeliveryDays>span {
   font-family: sans-serif;
   font-weight: 700;
   font-size: 20px;
@@ -30,13 +51,44 @@
   padding-top: 10px;
 }
 
-.QuoteDeliveryEstimation > span {
+.QuoteDeliveryEstimation>span {
   font-family: sans-serif;
   font-size: 15px;
 }
 
-.QuoteDeliveryDate > span {
+.QuoteDeliveryDate>span {
   font-family: sans-serif;
   font-weight: 700;
   font-size: 15px;
+}
+
+.QuoteRoute {
+  border: 1px solid black;
+  height: 20%;
+  font-family: sans-serif;
+  font-weight: 600;
+  color: white;
+  background-color: #4129c7;
+  
+}
+
+.QuotePrice {
+  border: 1px solid black;
+  height: 80%;
+  font-size: 40px;
+  font-family: sans-serif;
+}
+
+.Quote > div {
+  text-align: center;
+}
+
+.Quote > span {
+  display: inline-block;
+  line-height: normal;
+}
+
+.Quote > p {
+  display: inline-block;
+  line-height: normal;
 }

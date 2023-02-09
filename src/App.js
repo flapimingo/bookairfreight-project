@@ -33,10 +33,12 @@ function App() {
       {quoteHistory.length > 0 && (
         <div className="QuoteBox">
           {quoteHistory.map((quote, index) => (
-            <Quote
-              data={quote}
-              key={index}
-            />
+            <div className="QuoteField">
+              <Quote
+                data={quote}
+                key={index}
+              />
+            </div>
           ))}
         </div>
       )}

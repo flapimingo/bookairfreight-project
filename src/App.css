@@ -4,6 +4,9 @@
 }
 
 .QuoteBox {
-  margin: 10px 20px 0px;
   width: 100vw;
+}
+
+.QuoteField {
+  margin: 10px;
 }
