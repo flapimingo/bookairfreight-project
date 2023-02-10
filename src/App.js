@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import QuoteForm from './components/Form';
 import Quote from './components/Quote';
@@ -13,7 +13,7 @@ function App() {
   const defaultQuoteValues = {
     startingCountry: '',
     destinationCountry: '',
-    quotePrice: NaN,
+    quotePrice: String(NaN),
     shippingChannel: shippingOptions[0],
   };
 

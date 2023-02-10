@@ -1,6 +1,15 @@
 import './Input.css';
 
-const Input = ({ label, type, options, value, name, min, onChange }) => {
+const Input = ({ label, type, options, value, name, min, dataSetter }) => {
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    dataSetter((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   return (
     <div className="Input">
       {label && <label>{label}</label>}
@@ -11,8 +20,9 @@ const Input = ({ label, type, options, value, name, min, onChange }) => {
           ))}
         </select>
       )}
-      {['number','text'].includes(type) && (
+      {['number', 'text'].includes(type) && (
         <input
+          data-testid={name}
           type={type}
           name={name}
           value={value}

@@ -8,14 +8,6 @@ const Form = ({ name, defaultQuoteValues, shippingOptions, handleSubmit }) => {
 
   const { startingCountry, destinationCountry, quotePrice, shippingChannel } = quoteData;
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setQuoteData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
   const handleOnSubmit = (e) => {
     let formIsValid = true;
 
@@ -27,7 +19,7 @@ const Form = ({ name, defaultQuoteValues, shippingOptions, handleSubmit }) => {
       // Validate if country includes only letters
       if ((!startingCountry.match(/^[a-zA-Z]+$/)) || (!destinationCountry.match(/^[a-zA-Z]+$/))) {
         alert('Invalid input');
-        formIsValid = false;  
+        formIsValid = false;
       }
     }
 
@@ -38,20 +30,20 @@ const Form = ({ name, defaultQuoteValues, shippingOptions, handleSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleOnSubmit} name={name}>
+    <form onSubmit={handleOnSubmit} name={name} data-testid="QuoteForm">
       <Input
         label="Starting country"
         name="startingCountry"
         type="text"
         value={startingCountry}
-        onChange={handleChange}
+        dataSetter={setQuoteData}
       />
       <Input
         label="Destination country"
         name="destinationCountry"
         type="text"
         value={destinationCountry}
-        onChange={handleChange}
+        dataSetter={setQuoteData}
       />
       <Input
         label="Quote price"
@@ -59,7 +51,7 @@ const Form = ({ name, defaultQuoteValues, shippingOptions, handleSubmit }) => {
         type="number"
         value={quotePrice}
         min={0}
-        onChange={handleChange}
+        dataSetter={setQuoteData}
       />
       <Input
         label="Shipping channel"
@@ -67,7 +59,7 @@ const Form = ({ name, defaultQuoteValues, shippingOptions, handleSubmit }) => {
         options={shippingOptions}
         type="select"
         value={shippingChannel}
-        onChange={handleChange}
+        dataSetter={setQuoteData}
       />
       <Button
         label="Create quote"
